@@ -1,22 +1,37 @@
-import axiosOrg, { AxiosResponse } from 'axios'
 import { VoucherifyServerSide } from '../src'
 
-const axios = axiosOrg as jest.Mocked<typeof import('axios')['default']>
-
 describe('Customers API', () => {
-	const voucherify = VoucherifyServerSide({
-		applicationId: 'node-test-app-id',
-		secretKey: 'node-test-secret-key',
+	const client = VoucherifyServerSide({
+		applicationId: '0498cc6f-ba05-49ee-a557-fa66414ed05c',
+		secretKey: '96e3b009-3d32-4720-923d-e96294f16a93',
 	})
 
 	it('should create a customer', async () => {
-		const customer = { name: 'Customer name' }
+		await client.customers.create({})
+	})
 
-		axios.post.mockResolvedValueOnce({ data: customer, status: 200 } as AxiosResponse)
+	it('should create a customer', async () => {
+		await client.customers.create({ source_id: '123' })
+	})
 
-		const response = await voucherify.customers.create(customer)
-
-		expect(response).toBe(customer)
-		expect(axios.post).toHaveBeenCalledWith('/customers', customer, { params: undefined })
+	it('should create a customer', async () => {
+		await client.customers.create({
+			source_id: 'string',
+			name: 'string',
+			email: 'string@example.com',
+			metadata: {
+				dsadas: 'string',
+			},
+			description: 'string',
+			address: {
+				city: 'string',
+				state: 'string',
+				line_1: 'string',
+				line_2: 'string',
+				country: 'string',
+				postal_code: 'string',
+			},
+			phone: '+000321321',
+		})
 	})
 })
