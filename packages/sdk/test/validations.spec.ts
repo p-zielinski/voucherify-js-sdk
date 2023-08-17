@@ -28,6 +28,18 @@ describe('Validations API', () => {
 		}
 	})
 
+	it('should validate', async () => {
+		const response = await client.validations.validate((await generateVoucher()).code)
+		if (
+			!response.valid ||
+			!response.applicable_to ||
+			!response.inapplicable_to ||
+			!response.code ||
+			!response.metadata
+		) {
+			throw new Error('All values should be positive')
+		}
+	})
 	// const allCustomers = []
 	// //client.customers.scroll ---- does not work
 	// it('should scroll through all customers', async () => {
