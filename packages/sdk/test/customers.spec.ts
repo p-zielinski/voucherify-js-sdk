@@ -1,21 +1,23 @@
-import { VoucherifyServerSide } from '../src'
+import { voucherifyClient as client } from './client'
+import { CustomersCreateResponse, CustomersUpdateResponse } from '../src'
+import { generateRandomString } from './utils/generateRandomString'
 
 describe('Customers API', () => {
-	const client = VoucherifyServerSide({
-		applicationId: '0498cc6f-ba05-49ee-a557-fa66414ed05c',
-		secretKey: '96e3b009-3d32-4720-923d-e96294f16a93',
+	//client.customers.create
+	let customerCreate: CustomersCreateResponse
+
+	it('should create a customer without any data', async () => {
+		customerCreate = await client.customers.create({})
 	})
 
-	it('should create a customer', async () => {
-		await client.customers.create({})
+	it('should update a customer with id', async () => {
+		const name = 'John'
+		customerCreate = await client.customers.create({ id: customerCreate.id, name })
+		expect(customerCreate.name).toBe(name)
 	})
 
-	it('should create a customer', async () => {
-		await client.customers.create({ source_id: '123' })
-	})
-
-	it('should create a customer', async () => {
-		await client.customers.create({
+	it('should create a customer with data', async () => {
+		const customerData = {
 			source_id: 'string',
 			name: 'string',
 			email: 'string@example.com',
@@ -32,6 +34,89 @@ describe('Customers API', () => {
 				postal_code: 'string',
 			},
 			phone: '+000321321',
-		})
+		}
+		customerCreate = await client.customers.create(customerData)
+		expect(customerCreate).toEqual(expect.objectContaining(customerData))
+	})
+
+	it('should update a customer with source id', async () => {
+		const name = 'Adam'
+		customerCreate = await client.customers.create({ source_id: customerCreate.source_id, name })
+		expect(customerCreate.name).toBe(name)
+	})
+	/////////////////////////////////////////////////////////////////////
+
+	//client.customers.update
+	let customerUpdate: CustomersUpdateResponse
+
+	it('should update a customer with source id', async () => {
+		const name = 'Stan'
+		if (!customerCreate.source_id) {
+			throw new Error(`source Id should not be undefined`)
+		}
+		customerUpdate = await client.customers.update({ source_id: customerCreate.source_id, name })
+		expect(customerUpdate.name).toBe(name)
+	})
+
+	it('should update a customer with id', async () => {
+		const name = 'Lee'
+		if (!customerUpdate.id) {
+			throw new Error(`id should not be undefined`)
+		}
+		customerUpdate = await client.customers.update({ id: customerUpdate.id, name })
+		expect(customerUpdate.name).toBe(name)
+	})
+
+	//client.customers.delete
+	it('should create a customer, and then delete it by sourceId', async () => {
+		const source_id = generateRandomString()
+		await client.customers.create({ source_id })
+		await client.customers.delete(source_id)
+		try {
+			await client.customers.get(source_id)
+			throw new Error(`Customer should not be found`)
+		} catch (e) {
+			expect(e.message).toBe('Resource not found')
+		}
+	})
+
+	it('should create a customer, and then delete it by id', async () => {
+		const customer = await client.customers.create({})
+		await client.customers.delete(customer.id)
+		try {
+			await client.customers.get(customer.id)
+			throw new Error(`Customer should not be found`)
+		} catch (e) {
+			expect(e.message).toBe('Resource not found')
+		}
+	})
+
+	//client.customers.deletePermanently
+	it('should create a customer, and then delete it permanently by sourceId', async () => {
+		const source_id = generateRandomString()
+		await client.customers.create({ source_id })
+		await client.customers.deletePermanently(source_id)
+		try {
+			await client.customers.get(source_id)
+			throw new Error(`Customer should not be found`)
+		} catch (e) {
+			expect(e.message).toBe('Resource not found')
+		}
+	})
+
+	it('should create a customer, and then delete it permanently by id', async () => {
+		const customer = await client.customers.create({})
+		await client.customers.deletePermanently(customer.id)
+		try {
+			await client.customers.get(customer.id)
+			throw new Error(`Customer should not be found`)
+		} catch (e) {
+			expect(e.message).toBe('Resource not found')
+		}
+	})
+
+	//client.customers.list
+	it('should create a customer, and then delete it permanently by id', async () => {
+		console.log(await client.customers.list())
 	})
 })
