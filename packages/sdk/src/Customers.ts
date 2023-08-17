@@ -46,7 +46,7 @@ class Customers {
 			params.starting_after ?? (params.order === 'created_at' ? '1970-01-01T00:00:00Z' : '2200-01-01T00:00:00Z')
 		let response = await this.client.get<T.CustomersScrollResponse>(
 			'/customers',
-			Object.assign({}, params, { starting_after: startingAfter }),
+			Object.assign({ ...params, starting_after: startingAfter, is_scroll: true }),
 		)
 
 		while (true) {
@@ -63,7 +63,7 @@ class Customers {
 
 			if (!response.has_more) break
 
-			response = await this.client.get('/customers', Object.assign({}, params, { starting_after: startingAfter }))
+			response = await this.client.get('/customers', { ...params, starting_after: startingAfter, is_scroll: true })
 		}
 	}
 	/**

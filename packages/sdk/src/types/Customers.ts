@@ -81,7 +81,7 @@ export interface CustomerRequest {
 
 export interface CustomersCommonListRequest {
 	limit?: number
-	page?: number
+	page?: number //from 1
 	email?: string
 	city?: string
 	name?: string
@@ -356,7 +356,8 @@ interface CustomerActivityObjectDataCustomerVoucherBalanceAdded {
 	customer: Record<string, any>
 }
 
-type CustomerActivityObjectDataCustomerVoucherLoyaltyCardPointsAdded = CustomerActivityObjectDataCustomerVoucherBalanceAdded
+type CustomerActivityObjectDataCustomerVoucherLoyaltyCardPointsAdded =
+	CustomerActivityObjectDataCustomerVoucherBalanceAdded
 type CustomerActivityObjectDataCustomerVoucherLoyaltyCardPointsTransferred = Record<string, any>
 
 interface CustomerActivityObjectDataCustomerPublicationSucceeded {

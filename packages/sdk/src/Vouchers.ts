@@ -28,6 +28,12 @@ export class Vouchers {
 	/**
 	 * @see https://docs.voucherify.io/reference/create-voucher
 	 */
+	public createWithoutCode(voucher: T.VouchersCreate) {
+		return this.client.post<T.VouchersCreateResponse>(`/vouchers/`, voucher)
+	}
+	/**
+	 * @see https://docs.voucherify.io/reference/create-voucher
+	 */
 	public create(voucher: T.VouchersCreate, code: string) {
 		return this.client.post<T.VouchersCreateResponse>(`/vouchers/${encode(code)}`, voucher)
 	}

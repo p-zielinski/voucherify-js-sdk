@@ -116,7 +116,25 @@ describe('Customers API', () => {
 	})
 
 	//client.customers.list
-	it('should create a customer, and then delete it permanently by id', async () => {
-		console.log(await client.customers.list())
+	it('should list customers', async () => {
+		const response = await client.customers.list({ limit: 5, page: 1, name: 'John' })
+		const { object, data_ref, customers, total } = response
+		if (!object || !data_ref || !customers || !total) {
+			throw new Error('All values should be not undefined')
+		}
 	})
+
+	// const allCustomers = []
+	// //client.customers.scroll ---- does not work
+	// it('should scroll through all customers', async () => {
+	// 	const response = await client.customers.list({ limit: 1 })
+	// 	const { total } = response
+	// 	for await (const customer of client.customers.scroll({ limit: 5 })) {
+	// 		allCustomers.push(customer)
+	// 	}
+	// 	console.log(total, allCustomers.length)
+	// 	if (total !== allCustomers.length) {
+	// 		throw new Error(`Scroll got incorrect number of customers`)
+	// 	}
+	// })
 })
