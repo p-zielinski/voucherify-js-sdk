@@ -1,12 +1,9 @@
 import { voucherifyClient as client } from './client'
-import { VouchersCreateResponse } from '../src'
 // import { generateRandomString } from './utils/generateRandomString'
 
 describe('Validations API', () => {
-	let voucher: VouchersCreateResponse
-
-	beforeAll(async () => {
-		voucher = await client.vouchers.createWithoutCode({
+	const generateVoucher = async () =>
+		await client.vouchers.createWithoutCode({
 			type: 'DISCOUNT_VOUCHER',
 			discount: {
 				amount_off: 2000,
@@ -17,10 +14,9 @@ describe('Validations API', () => {
 			},
 			metadata: {},
 		})
-	})
 
 	it('should validate', async () => {
-		const response = await client.validations.validateVoucher(voucher.code)
+		const response = await client.validations.validateVoucher((await generateVoucher()).code)
 		if (
 			!response.valid ||
 			!response.applicable_to ||
