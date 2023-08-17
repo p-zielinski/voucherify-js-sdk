@@ -140,6 +140,7 @@ const client = VoucherifyServerSide({
 
 Methods are provided within `client.vouchers.*` namespace.
 
+- [Create Voucher Without Code](#create-voucher)
 - [Create Voucher](#create-voucher)
 - [Get Voucher](#get-voucher)
 - [Update Voucher](#update-voucher)
@@ -157,10 +158,16 @@ Methods are provided within `client.vouchers.*` namespace.
 - [Export Gift Card Transactions](#export-gift-card-transactions)
 - [List Gift Card Transactions](#list-gift-card-transactions)
 
+#### [Create Voucher Without Code](https://docs.voucherify.io/reference/create-voucher)
+
+```javascript
+client.vouchers.createWithoutCode(voucher)
+```
+
 #### [Create Voucher](https://docs.voucherify.io/reference/create-voucher)
 
 ```javascript
-client.vouchers.create(voucher)
+client.vouchers.create(voucher, code)
 ```
 
 Check [voucher object](https://docs.voucherify.io/reference/the-voucher-object).

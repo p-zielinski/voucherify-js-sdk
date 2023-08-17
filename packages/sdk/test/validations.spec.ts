@@ -21,8 +21,13 @@ describe('Validations API', () => {
 
 	it('should validate', async () => {
 		const response = await client.validations.validateVoucher(voucher.code)
-		const { valid, applicable_to, inapplicable_to, code, metadata } = response
-		if (!valid || !applicable_to || !inapplicable_to || !code || !metadata) {
+		if (
+			!response.valid ||
+			!response.applicable_to ||
+			!response.inapplicable_to ||
+			!response.code ||
+			!response.metadata
+		) {
 			throw new Error('All values should be positive')
 		}
 	})

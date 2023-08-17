@@ -40,11 +40,12 @@ export type ValidationsValidateVoucherParams =
 	| ReqValidateVoucherGiftCard
 	| ReqValidateVoucherLoyaltyCard
 
-export type ValidationsValidateVoucherResponse =
+export type ValidationsValidateVoucherResponse = Partial<
 	| ResponseValidateVoucherDiscountCode
 	| ResponseValidateVoucherGiftCard
 	| ResponseValidateVoucherLoyaltyCard
 	| ResponseValidateVoucherFalse
+>
 
 export interface ResponseValidateVoucherFalse {
 	valid: false
