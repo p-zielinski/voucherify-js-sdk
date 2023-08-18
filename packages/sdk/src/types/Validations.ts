@@ -14,7 +14,7 @@ import {
 	ObjectOrder,
 	ObjectOrderApplyToOrder,
 } from './Orders'
-import { PromotionsValidationParams } from './Promotions'
+import { PromotionsValidateParams } from './Promotions'
 import { CategoryObject } from './Categories'
 import {
 	VoucherObjectDiscountAmount,
@@ -127,13 +127,13 @@ export interface ValidationsValidateStackableParams {
 	options?: StackableOptions
 	redeemables: (RedeemablesDiscountReferralPromotionTierPromotionStack | RedeemablesGiftCard | RedeemablesLoyaltyCard)[]
 	session?: ValidationSessionParams
-	order?: CreateOrder
+	order?: Partial<CreateOrder>
 	customer?: CreateCustomer
 	metadata?: Record<string, any>
 }
 
 interface RedeemablesDiscountReferralPromotionTierPromotionStack {
-	type: 'voucher' | 'promotion_tier' | 'promotion_stack'
+	object: 'voucher' | 'promotion_tier' | 'promotion_stack'
 	id: string
 }
 
@@ -482,6 +482,6 @@ export interface ValidationValidateStackableResponseClientSide {
 	redeemables?: StackableRedeemableResponse[]
 }
 
-export type ValidationsValidateCode = Partial<PromotionsValidationParams>
+export type ValidationsValidateCode = Partial<PromotionsValidateParams>
 
 export type ValidationsValidateContext = ValidationsValidateVoucherParams

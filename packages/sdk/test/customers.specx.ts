@@ -96,12 +96,13 @@ describe('Customers API', () => {
 		const source_id = generateRandomString()
 		await client.customers.create({ source_id })
 		await client.customers.deletePermanently(source_id)
+		//jest expect to throw
 		try {
 			await client.customers.get(source_id)
-			throw new Error(`Customer should not be found`)
 		} catch (e) {
-			expect(e.message).toBe('Resource not found')
+			return expect(e.message).toBe('Resource not found')
 		}
+		throw new Error(`Customer should not be found`)
 	})
 
 	it('should create a customer, and then delete it permanently by id', async () => {

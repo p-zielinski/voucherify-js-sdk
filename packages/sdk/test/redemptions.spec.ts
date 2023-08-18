@@ -1,10 +1,48 @@
 import { voucherifyClient as client } from './client'
-import { generateVoucher } from './utils/generateVoucher'
-import { generatePromotionTier } from './utils/generatePromotionTier'
+import { generateRandomString } from './utils/generateRandomString'
+import { PromotionTier } from '@voucherify/sdk'
 // import { ValidationsValidateVoucherResponse } from '@voucherify/sdk'
 // import { generateRandomString } from './utils/generateRandomString'
 
 describe('Validations API', () => {
+	const generateVoucher = async () =>
+		await client.vouchers.createWithoutCode({
+			type: 'DISCOUNT_VOUCHER',
+			discount: {
+				amount_off: 2000,
+				type: 'AMOUNT',
+			},
+			redemption: {
+				quantity: 1,
+			},
+			metadata: {},
+		})
+
+	const generatePromotionTier = async (): Promise<PromotionTier> => {
+		const createdPromotions = await client.promotions.create({
+			name: generateRandomString(),
+			campaign_type: 'PROMOTION',
+			promotion: {
+				tiers: [
+					{
+						name: generateRandomString(60),
+						action: {
+							discount: {
+								// @ts-ignore
+								type: 'AMOUNT',
+								amount_off: 1000,
+							},
+						},
+					},
+				],
+			},
+		})
+		if (!createdPromotions.promotion.tiers?.[0]) {
+			throw new Error('Could not create promotion')
+		}
+		return createdPromotions.promotion.tiers[0]
+	}
+
 	it('should validate voucher without campaign', async () => {
 		const code = (await generateVoucher()).code
 		const response = await client.validations.validateVoucher(code)
