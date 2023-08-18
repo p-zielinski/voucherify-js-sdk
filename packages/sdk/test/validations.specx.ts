@@ -1,8 +1,6 @@
 import { voucherifyClient as client } from './client'
 import { generateVoucher } from './utils/generateVoucher'
 import { generatePromotionTier } from './utils/generatePromotionTier'
-// import { ValidationsValidateVoucherResponse } from '@voucherify/sdk'
-// import { generateRandomString } from './utils/generateRandomString'
 
 describe('Validations API', () => {
 	it('should validate voucher without campaign', async () => {
@@ -36,7 +34,7 @@ describe('Validations API', () => {
 		expect(response.redeemables).toBeInstanceOf(Array)
 	})
 
-	it('should validate voucher promotion tier', async () => {
+	it('should validate promotion tier', async () => {
 		const promotionTier = await generatePromotionTier()
 		const response = await client.promotions.tiers.validate(promotionTier.id, {})
 		expect(response).toHaveProperty('valid')
