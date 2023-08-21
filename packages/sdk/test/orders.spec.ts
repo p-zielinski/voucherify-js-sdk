@@ -5,7 +5,7 @@ describe('Orders API', () => {
 	let order: OrdersCreateResponse
 	let orderExpectToEqualObject: any
 
-	it('should create orders', async () => {
+	it('should create order', async () => {
 		order = await client.orders.create({
 			customer: {
 				source_id: '123123',
@@ -71,8 +71,23 @@ describe('Orders API', () => {
 		expect(order).toEqual(orderExpectToEqualObject)
 	})
 
-	it('should create orders', async () => {
+	it('should get order', async () => {
 		order = await client.orders.get(order.id)
 		expect(order).toEqual(orderExpectToEqualObject)
+	})
+
+	it('should list orders and find just created order', async () => {
+		const { total } = await client.orders.list({ order: 'created_at', limit: 1 })
+		const limit = total - 1 < 1 ? 0 : total - 1 > 100 ? 100 : total - 1
+		const allOrders: OrdersCreateResponse[] = []
+		let page = 1
+		while (allOrders.length >= total) {
+			const { orders } = await client.orders.list({ order: 'created_at', limit, page })
+			orders.forEach(order => allOrders.push(order))
+			if (orders.find(_order => _order.id === order.id)) {
+				break
+			}
+		}
+		expect(allOrders.find(_order => _order.id === order.id))
 	})
 })
