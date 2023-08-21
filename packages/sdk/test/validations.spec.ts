@@ -41,7 +41,7 @@ describe('Validations API', () => {
 		expect(response).toHaveProperty('applicable_to')
 		expect(response).toHaveProperty('inapplicable_to')
 		expect(response.id).toEqual(promotionTier.id)
-		expect(response.name).toHaveProperty(promotionTier.name)
+		expect(response.name).toEqual(promotionTier.name)
 		expect(response).toHaveProperty('campaign')
 		expect(response).toHaveProperty('hierarchy')
 		expect(response).toHaveProperty('metadata')
