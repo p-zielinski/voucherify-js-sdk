@@ -36,13 +36,16 @@ export const generateCustomerCSV = async (sourceId: string) => {
 		],
 	]
 	const path = __dirname.split('/').slice(0, -1).join('/') + '/csv/customers.csv'
-	csv.stringify(data, (error, output) => {
-		if (error) {
-			console.log(error)
-		}
-		if (output) {
-			fs.writeFileSync(path, output)
-		}
+	return new Promise<void>((resolve, reject) => {
+		csv.stringify(data, (error, output) => {
+			if (error) {
+				console.log(error)
+				reject(error)
+			}
+			if (output) {
+				fs.writeFileSync(path, output)
+				resolve()
+			}
+		})
 	})
-	return
 }
