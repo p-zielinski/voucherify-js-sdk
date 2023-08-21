@@ -23,6 +23,7 @@ describe('Validations API', () => {
 				expect(typeof response.discount.amount_off).toEqual('number')
 			}
 		}
+	})
 
 	it('should validate multiple vouchers without campaign', async () => {
 		const response = await client.validations.validateStackable({
