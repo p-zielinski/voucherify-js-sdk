@@ -1,0 +1,2 @@
+Name,Email,Phone,Birthdate,Source_id,Address_line_1,Address_line_2,Postal_Code,City,State,Country,Description,Metadata_name_1,Metadata_name_2
+John Doe,johndoe+test@test.io,+15123456789,1987-01-01,johndoe+test@test.io,4435 Oakridge,Farm Lane,53151,New Berlin,Wisconsin,United States,Optional decription e.g. Subscribed since 04-2019,Metadata_1_value,Metadata_2_value

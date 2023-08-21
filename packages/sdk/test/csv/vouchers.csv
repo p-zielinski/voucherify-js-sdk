@@ -1,0 +1,2 @@
+Code,Voucher Type,Value,Discount Type,Category,Start Date,Expiration Date,Redemption Limit,Active,Additional Info,Metadata_attribute_name
+example_code,DISCOUNT_VOUCHER,20,AMOUNT,example_category,2021-01-11T09:00:00.000Z,2024-11-11T09:00:00.000Z,1000,TRUE,This is a description of the standalone code,

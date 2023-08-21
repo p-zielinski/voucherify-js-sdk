@@ -138,4 +138,17 @@ describe('Customers API', () => {
 	// 		throw new Error(`Scroll got incorrect number of customers`)
 	// 	}
 	// })
+
+	//client.customers.import
+	it('should import customer via csv file', async () => {
+		//@todo randomize source_id
+		const response = await client.customers.importCustomersUsingCSV(__dirname + '/csv/customers.csv')
+		expect(response.async_action_id).toEqual(expect.stringMatching(/^aa_.*/))
+		while ((await client.asyncActions.get(response.async_action_id)).status === 'IN_PROGRESS') {
+			await new Promise(r => setTimeout(r, 1000))
+		}
+		const sourceIdFromCSVFile = 'johndoe+test@test.io'
+		const importedCustomer = await client.customers.get(sourceIdFromCSVFile)
+		expect(importedCustomer.source_id).toEqual(sourceIdFromCSVFile)
+	})
 })
