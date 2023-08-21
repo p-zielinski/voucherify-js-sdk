@@ -40,30 +40,35 @@ export type ValidationsValidateVoucherParams =
 	| ReqValidateVoucherGiftCard
 	| ReqValidateVoucherLoyaltyCard
 
-export type ValidationsValidateVoucherResponse = Partial<
+export type ValidationsValidateVoucherResponse =
 	| ResponseValidateVoucherDiscountCode
 	| ResponseValidateVoucherGiftCard
 	| ResponseValidateVoucherLoyaltyCard
 	| ResponseValidateVoucherFalse
->
 
 export interface ResponseValidateVoucherFalse {
 	valid: false
 	reason: string
 	error: {
+		code: number
+		key: string
 		message: string
+		details: string
+		request_id: string
+		resource_id: string
+		resource_type: string
 	}
-	tracking_id: string
+	tracking_id?: string
 	code: string
 	metadata?: Record<string, any>
 }
 
 export interface ResponseValidateVoucherLoyaltyCard {
-	valid: boolean
+	valid: true
 	applicable_to: ApplicableToObjectPromotionTier //6_res_applicable_to_object
 	inapplicable_to: InapplicableToObjectPromotionTier //6_res_inapplicable_to_object
-	tracking_id: string
-	order: ObjectOrderApplyToOrder //6_obj_order_object_apply_to_order
+	tracking_id?: string
+	order?: ObjectOrderApplyToOrder //6_obj_order_object_apply_to_order
 	code: string
 	loyalty: {
 		points_cost: number
@@ -74,19 +79,19 @@ export interface ResponseValidateVoucherLoyaltyCard {
 		points: number
 	}
 	metadata: Record<string, any>
-	start_date: string
-	expiration_date: string
-	campaign: string
-	campaign_id: string
-	session: ValidationSessionParams
+	start_date?: string
+	expiration_date?: string
+	campaign?: string
+	campaign_id?: string
+	session?: ValidationSessionParams
 }
 
 export interface ResponseValidateVoucherGiftCard {
-	valid: boolean
+	valid: true
 	applicable_to: ApplicableToObjectPromotionTier //6_res_applicable_to_object
 	inapplicable_to: InapplicableToObjectPromotionTier //6_res_inapplicable_to_object
-	tracking_id: string
-	order: ObjectOrder
+	tracking_id?: string
+	order?: ObjectOrder
 	code: string
 	gift: {
 		amount: number
@@ -94,19 +99,19 @@ export interface ResponseValidateVoucherGiftCard {
 		effect: 'APPLY_TO_ORDER' | 'APPLY_TO_ITEMS'
 	}
 	metadata: Record<string, any>
-	start_date: string
-	expiration_date: string
-	campaign: string
-	campaign_id: string
-	session: ValidationSessionParams
+	start_date?: string
+	expiration_date?: string
+	campaign?: string
+	campaign_id?: string
+	session?: ValidationSessionParams
 }
 
 export interface ResponseValidateVoucherDiscountCode {
-	valid: boolean
+	valid: true
 	applicable_to: ApplicableToObjectPromotionTier //6_res_applicable_to_object
 	inapplicable_to: InapplicableToObjectPromotionTier //6_res_inapplicable_to_object
-	tracking_id: string
-	order: ObjectOrder
+	tracking_id?: string
+	order?: ObjectOrder
 	code: string
 	discount:
 		| ValidateVoucherDiscountAmount
@@ -116,11 +121,11 @@ export interface ResponseValidateVoucherDiscountCode {
 		| ValidateVoucherDiscountUnitMultiple
 		| ValidateVoucherDiscountShipping
 	metadata: Record<string, any>
-	start_date: string
-	expiration_date: string
-	campaign: string
-	campaign_id: string
-	session: ValidationSessionParams
+	start_date?: string
+	expiration_date?: string
+	campaign?: string
+	campaign_id?: string
+	session?: ValidationSessionParams
 }
 
 export interface ValidationsValidateStackableParams {
