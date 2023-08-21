@@ -2,6 +2,7 @@ import { voucherifyClient as client } from './client'
 import { generateVoucher } from './utils/generateVoucher'
 import { generatePromotionTier } from './utils/generatePromotionTier'
 import { generateRandomString } from './utils/generateRandomString'
+import { generateCampaignWithOnePromotionTier } from './utils/generateCampaignWithOnePromotionTier'
 
 describe('Validations API', () => {
 	it('while validating not existing code, should get error message', async () => {
@@ -37,18 +38,24 @@ describe('Validations API', () => {
 	})
 
 	it('should validate promotion tier', async () => {
-		const promotionTier = await generatePromotionTier()
+		const campaign = await generateCampaignWithOnePromotionTier()
+		const promotionTier = campaign.promotion.tiers?.[0]
+		if (!promotionTier) {
+			return
+		}
 		const response = await client.promotions.tiers.validate(promotionTier.id, {})
-		expect(response).toHaveProperty('valid')
-		expect(response).toHaveProperty('applicable_to')
-		expect(response).toHaveProperty('inapplicable_to')
-		expect(response.id).toEqual(promotionTier.id)
-		expect(response.name).toEqual(promotionTier.name)
-		expect(response).toHaveProperty('campaign')
-		expect(response).toHaveProperty('hierarchy')
-		expect(response).toHaveProperty('metadata')
-		expect(response.object).toEqual('promotion_tier')
-		expect(response).toHaveProperty('metadata')
+		expect(response.valid).toEqual(true)
+		if ('applicable_to' in response) {
+			expect(Array.isArray(response?.applicable_to.data)).toEqual(true)
+			expect(Array.isArray(response?.inapplicable_to.data)).toEqual(true)
+			expect(response.id).toEqual(promotionTier.id)
+			expect(response.name).toEqual(promotionTier.name)
+			expect(response.campaign?.id).toEqual(campaign.id)
+			expect(typeof response.hierarchy).toEqual('number')
+			expect(typeof response.metadata).toEqual('object')
+			expect(response.object).toEqual('promotion_tier')
+			expect(response.category_id).toEqual(null)
+		}
 	})
 
 	it('should validate multiple promotion tiers', async () => {

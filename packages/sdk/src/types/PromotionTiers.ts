@@ -50,6 +50,7 @@ export interface ValidationPromotionTierTrue {
 	applied_discount_amount?: number
 	metadata?: Record<string, any>
 	object: 'promotion_tier'
+	category_id?: string
 }
 
 interface ValidationPromotionTierFalse {
