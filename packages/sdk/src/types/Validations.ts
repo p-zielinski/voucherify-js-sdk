@@ -40,27 +40,60 @@ export type ValidationsValidateVoucherParams =
 	| ReqValidateVoucherGiftCard
 	| ReqValidateVoucherLoyaltyCard
 
-export type ValidationsValidateVoucherResponse =
-	| ResponseValidateVoucherDiscountCode
-	| ResponseValidateVoucherGiftCard
-	| ResponseValidateVoucherLoyaltyCard
-	| ResponseValidateVoucherFalse
+export type ValidationsValidateVoucherResponse = ResponseValidateVoucherTrue | ResponseValidateVoucherFalse
 
 export interface ResponseValidateVoucherFalse {
 	valid: false
-	reason: string
-	error: {
+	code: string
+	error?: {
 		code: number
 		key: string
 		message: string
 		details: string
-		request_id: string
-		resource_id: string
-		resource_type: string
+		request_id?: string
+		resource_id?: string
+		resource_type?: string
 	}
 	tracking_id?: string
-	code: string
+	customer_id?: string
 	metadata?: Record<string, any>
+	reason?: string
+}
+
+export interface ResponseValidateVoucherTrue {
+	valid: true
+	tracking_id?: string
+	customer_id?: string
+	applicable_to: ApplicableToObjectPromotionTier //6_res_applicable_to_object
+	inapplicable_to: InapplicableToObjectPromotionTier //6_res_inapplicable_to_object
+	loyalty?: {
+		points_cost: number
+	}
+	reward?: {
+		id: string
+		assignment_id: string
+		points: number
+	}
+	order?: ObjectOrder
+	session?: ValidationSessionParams
+	discount:
+		| ValidateVoucherDiscountAmount
+		| ValidateVoucherDiscountPercent
+		| ValidateVoucherDiscountFixed
+		| ValidateVoucherDiscountUnit
+		| ValidateVoucherDiscountUnitMultiple
+		| ValidateVoucherDiscountShipping
+	code: string
+	metadata: Record<string, any>
+	campaign?: string
+	campaign_id?: string
+	gift?: {
+		amount: number
+		balance: number
+		effect: 'APPLY_TO_ORDER' | 'APPLY_TO_ITEMS'
+	}
+	start_date?: string
+	expiration_date?: string
 }
 
 export interface ResponseValidateVoucherLoyaltyCard {
