@@ -66,7 +66,15 @@ describe('Validations API', () => {
 				{ object: 'promotion_tier', id: (await generatePromotionTier()).id },
 			],
 		})
+		console.log(response)
 		expect(response).toBeTruthy()
 		expect(response.redeemables).toBeInstanceOf(Array)
+		if (Array.isArray(response.redeemables)) {
+			response.redeemables?.forEach(redeemable => {
+				if (redeemable.object === 'promotion_tier') {
+					//
+				}
+			})
+		}
 	})
 })
