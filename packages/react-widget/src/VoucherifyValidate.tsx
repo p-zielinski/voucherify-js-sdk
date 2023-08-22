@@ -171,7 +171,7 @@ export function VoucherifyValidate({
 						return
 					}
 
-					if (response?.discount) {
+					if ('discount' in response) {
 						const responseDiscount = response?.discount as DiscountUnit | DiscountAmount | DiscountPercent
 
 						switch (responseDiscount.type) {
@@ -213,7 +213,7 @@ export function VoucherifyValidate({
 						setInput(prev => ({
 							...prev,
 							voucherifyDiscountType: 'GIFT_CARD',
-							voucherifyAmountOff: response?.order?.total_discount_amount || 0,
+							voucherifyAmountOff: ('order' in response && response?.order?.total_discount_amount) || 0,
 							voucherifyUnitOff: 0,
 							voucherifyPercentOff: 0,
 							voucherifyTracking: response?.tracking_id || '',
