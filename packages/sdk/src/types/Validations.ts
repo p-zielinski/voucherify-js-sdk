@@ -158,13 +158,12 @@ export type ValidationValidateStackableResponse = ResponseValidationsTrue | Resp
 
 export interface ResponseValidationsTrue {
 	valid: true
-	redeemables?: (
-		| ResponseValidationsRedeemablesDiscountVoucher
-		| ResponseValidationsRedeemablesGiftCard
-		| ResponseValidationsRedeemablesLoyaltyCard
-		| ResponseValidationsRedeemablesPromotionTier
-		| ResponseValidationsRedeemablesPromotionStack
-	)[]
+	redeemables?:
+		| ResponseValidationsRedeemablesDiscountVoucher[]
+		| ResponseValidationsRedeemablesGiftCard[]
+		| ResponseValidationsRedeemablesLoyaltyCard[]
+		| ResponseValidationsRedeemablesPromotionTier[]
+		| ResponseValidationsRedeemablesPromotionStack[]
 	order?: {
 		amount?: number
 		discount_amount?: number
@@ -203,22 +202,24 @@ export interface ResponseValidationsTrue {
 	tracking_id?: string
 	session?: ValidationSessionResponse
 }
+
+interface ResponseValidationsRedeemablesFalse {
+	status: StackableRedeemableResponseStatus
+	id: string
+	object: StackableRedeemableObject
+	result?: ErrorNoTranslation & { error: { message: string } }
+	metadata?: Record<string, any>
+	categories?: CategoryObject
+}
 interface ResponseValidationsFalse {
 	valid: false
-	redeemables?: {
-		status: StackableRedeemableResponseStatus
-		id: string
-		object: StackableRedeemableObject
-		result?: ErrorNoTranslation & { error: { message: string } }
-		metadata?: Record<string, any>
-		categories?: CategoryObject
-	}[]
+	redeemables?: ResponseValidationsRedeemablesFalse[]
 }
 
 interface ResponseValidationsRedeemablesPromotionStack {
 	status: 'APPLICABLE'
 	id: string
-	object: 'voucher'
+	object: 'promotion_stack'
 	applicable_to: ApplicableToObjectPromotionTier //6_res_applicable_to_object
 	inapplicable_to: InapplicableToObjectPromotionTier //6_res_inapplicable_to_object
 	result: { loyalty_card: { points: number } }
@@ -229,7 +230,7 @@ interface ResponseValidationsRedeemablesPromotionStack {
 interface ResponseValidationsRedeemablesPromotionTier {
 	status: 'APPLICABLE'
 	id: string
-	object: 'voucher'
+	object: 'promotion_tier'
 	applicable_to?: ApplicableToObjectPromotionTier //6_res_applicable_to_object
 	inapplicable_to?: InapplicableToObjectPromotionTier //6_res_inapplicable_to_object
 	result?: {
