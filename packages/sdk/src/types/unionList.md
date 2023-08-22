@@ -1,0 +1,298 @@
+AsyncActions.ts
+- AsyncActionsResponseTypes(strings)
+- AsyncActionGetResult(multiple are similar...)
+Campaigns.ts
+- CampaignResponse.referral_program
+- CampaignResponse.loyalty_tiers_expiration
+- CampaignResponse.voucher
+- AddPromotionTierToCampaign.tiers.action.discount
+- ListPromotionTiersFromCampaign.tiers.action.discount
+- LoyaltyTiersExpirationBalance.expiration_date
+- LoyaltyTiersExpirationBalanceExpirationDateCustom.rounding
+- CampaignsQualificationsParams.order (strings)
+- CampaignObjectCampaignsQualification.voucher
+- CampaignObjectCampaignsQualification.referral_program
+- ReferralProgramCustomEventRedemption.referee_reward.type (strings)
+- ReferralProgramRedemption.referee_reward.type (strings)
+- CampaignsCreateCampaign
+- CreateCampaignDiscountVoucher.type (strings)
+- CreateCampaignLoyalty.type (strings)
+- CreateCampaignGift.type (strings)
+- CreateCampaignPromotion.type (strings)
+- CreateCampaignReferral.referral_program
+- CreateCampaignReferral.voucher
+- CampaignsAddVoucherResponse
+Customers.ts
+- CustomersCommonListRequest.order (strings)
+- CustomerActivitiesListQueryParams.type (strings)
+- CustomerActivityObjectData
+DiscountVoucher.ts
+- DiscountVouchersEffectTypes (strings)
+- DiscountUnitVouchersEffectTypes (strings)
+- DiscountAmountVouchersEffectTypes (strings)
+- DiscountPercentVouchersEffectTypes (strings)
+- DiscountFixedVouchersEffectTypes (strings)
+- VoucherObjectDiscountAmount.effect (strings)
+- VoucherObjectDiscountPercentage.effect (strings)
+- VoucherObjectDiscountFixed.effect (strings)
+- VoucherObjectDiscountUnitOne.effect (strings)
+- VoucherObjectDiscountUnitMultiple.units[].effect (strings)
+Distributions.ts
+- OrderType (strings)
+- PublicationResponseChannel (strings)
+- DistributionsPublicationsVoucher
+- DistributionsPublicationsVoucherGiftCard.gift.effect (strings)
+- DistributionsPublicationsCreateResponseVoucher.gift.effect (strings)
+- DistributionsPublicationsCreateResponseVoucher.validity_day_of_week
+- DistributionsPublicationsListParams.result (strings)
+- DistributionsPublicationsListParams.voucher_type (strings)
+- PublicationResponse.result (strings)
+- CreatePublicationFromCampaign
+- DistributionsPublicationsCreateResponse.result (strings)
+Exports.ts
+- ListExportQuery.order (strings)
+- CreateExport.exported_objects (strings)
+- CreateExport.parameters
+- ExportObject.status (strings)
+- ExportObject.channel (strings)
+- ExportObject.exported_objects (strings)
+- ExportParameters
+- ExportOrder.order (strings)
+- ExportOrder.fields (strings)
+- ExportOrder.filters
+- ExportVoucher.order (strings)
+- ExportVoucher.fields (strings)
+- ExportPublication.order (strings)
+- ExportPublication.fields (strings)
+- ExportPublication.filters
+- ExportRedemption.order (strings)
+- ExportRedemption.fields (strings)
+- ExportCustomer.order (strings)
+- ExportCustomer.fields (strings)
+- ExportPointsExpiration.order (strings)
+- ExportPointsExpiration.fields (strings)
+- ExportPointsExpiration.filters
+- ExportGiftCardTransactions.order (strings)
+- ExportGiftCardTransactions.fields (strings)
+- ExportLoyaltyCardTransactions.order (strings)
+- ExportLoyaltyCardTransactions.fields (strings)
+- FilterJunction
+Loyalties.ts
+- ListMembersLoyaltyTiersResponse.data[].earning_rules
+- ListMembersLoyaltyTiersResponse.data[].rewards
+- ListLoyaltyTierParameters.order (strings)
+- LoyaltyTierObject.earning_rules
+- LoyaltyTierObject.rewards
+- LoyaltiesListParams.order (strings)
+- LoyaltiesRedeemRewardResponse.result (strings)
+- LoyaltiesRedeemRewardResponse.reward
+- ReqExportPointsExpirations.order (strings)
+- ReqExportPointsExpirations.filters
+- ExportObjectPointsExpiration.status (strings)
+- ExportObjectPointsExpiration.channel (strings)
+- ExportObjectPointsExpiration.parameters.order (strings)
+- ExportObjectPointsExpiration.parameters.filters
+- LoyaltyCardObjectNonExpandedCategories.validity_day_of_week
+- LoyaltyCampaignObject.type (strings)
+- LoyaltyCampaignObject.vouchers_generation_status (strings)
+- LoyaltyCampaignObject.creation_status (strings)
+- LoyaltyCampaignObject.loyalty_tiers_expiration
+- CampaignObjectNoExtendedCategories.type (strings)
+- CampaignObjectNoExtendedCategories.vouchers_generation_status (strings)
+- CampaignObjectNoExtendedCategories.creation_status (strings)
+- CampaignObjectNoExtendedCategories.loyalty_tiers_expiration
+- LoyaltyTiersExpirationPointsInPeriod.qualification_period (strings)
+- LoyaltyTiersExpirationPointsInPeriod.start_date.type (strings)
+- LoyaltyTiersExpirationPointsInPeriod.expiration_date.type (strings)
+- LoyaltyTiersExpirationBalance.expiration_date
+- LoyaltyTiersExpirationBalanceExpirationDateCustom.rounding
+- LoyaltyTiersExpirationExpirationDateRoundingDefaultOptions.type (strings)
+- LoyaltiesCreateCampaign.type (strings)
+- LoyaltiesCreateCampaign.loyalty_tiers_expiration
+- LoyaltiesListEarningRulesParams.order (strings)
+- LoyaltiesEarningRulesResponse.loyalty
+- LoyaltiesEarningRulesResponse.event
+- EarningRuleObject
+- CreateEarningRuleObject]UpdateEarningRuleObject
+- UpdateEarningRuleObjectTier.event (strings)
+- EarningRuleObjectOrderPaid.loyalty
+- EarningRuleObjectCustomEvent.loyalty
+- EarningRuleObjectEnteredSegment.loyalty
+- EarningRuleObjectTier.event (strings)
+- ObjectCalculatePointsProportionallyOrderPaid
+- ObjectCalculatePointsProportionallyItemAmount.order_items.amount.object (strings)
+- ObjectCalculatePointsProportionallyItemsSubtotalAmount.order_items.subtotal_amount.object (strings)
+- ObjectCalculatePointsProportionallyItemsQuantity.order_items.quantity.object (strings)
+- LoyaltiesListMembersParams.order (strings)
+- LoyaltiesAddPoints.expiration_type (strings)
+- ObjectLoyaltyCardTransaction
+- LoyaltyCardTransactionObjectAddition.source (strings)
+- LoyaltyCardTransactionObjectRemoval.source (strings)
+- ExportLoyaltyCardTransactions.order (strings)
+- ExportLoyaltyCardTransactions.fields (strings)
+- ExportTransactionObject.status (strings)
+- ExportLoyaltyCardTransactions.order (strings)
+- ExportLoyaltyCardTransactions.fields (strings)
+- LoyaltiesRedeemRewardParams.order.status (strings)
+MetadataSchemas.ts
+- MetadataSchemaProperty.eq
+- MetadataSchemaProperty.ne
+- MetadataSchema.related_object (strings)
+Orders.ts
+- ApplicableToObjectPromotionTier.data
+- InapplicableToObjectPromotionTier.data
+- ProductCollection.effect (strings)
+- ProductCollectionUnit.effect (strings)
+- ProductCollectionFixedAmount.effect (strings)
+- Product.effect (strings)
+- ProductUnit.effect (strings)
+- ProductFixedAmount.effect (strings)
+- Sku.effect (strings)
+- SkuUnit.effect (strings)
+- SkuFixedAmount.effect (strings)
+- CreateOrderExportResponse.status (strings)
+- CreateOrderExportResponse.channel (strings)
+- ExportOrderObject.order (strings)
+- ExportOrderObject.fields (strings)
+- ExportOrderObject.filters
+- ObjectOrder
+- OrderObject.status (strings)
+- OrderObject.redemptions
+- CreateOrder.status (strings)
+- OrdersOrderItem.related_object (strings)
+- OrdersCreate.status (strings)
+- OrdersCreateResponse.status (strings)
+- OrdersUpdate.status (strings)
+- OrdersListParams.status (strings)
+- OrderObjectRollback.redemptions.related_object_type (strings)
+ProductCollections.ts
+- ListProductCollectionsParameters.order (strings)
+- ListProductsCollection.data
+- ProductCollectionsObject
+- ProductCollectionsStaticObject.type (strings)
+- ProductCollectionsAutoUpdateObject.type (strings)
+Products.ts
+- ListSkusParams.order (strings)
+- ProductsListParams.order (strings)
+Promotions.ts
+- PromotionsCreate.promotion.tiers[].action.discount
+PromotionStacks.ts
+- ListPromotionStacksParams.order (strings)
+PromotionTiers.ts
+- ValidatePromotionTierResponse
+- ValidationPromotionTierTrue.discount
+- ValidationPromotionTierFalse.error
+- ValidationPromotionTierFalse.discount
+- PromotionTiersRedeemResponse.result (strings)
+- PromotionTiersRedeemResponse.channel.channel_type (strings)
+- UpdatePromotionTier.action.discount
+- AddPromotionTierToCampaignBody.action.discount
+- PromotionTierObject.action.discount
+- SimplePromotionTier.discount
+- PromotionTier.action.discount
+- PromotionTiersListAllParams.order (strings)
+- PromotionTiersCreateParams.action.discount
+Redemptions.ts
+- RedemptionsRedeemResponse
+- RedemptionObjectVoucher
+- RedemptionObjectLoyaltyCard.reward
+- RedemptionRollbackObjectVoucherDiscount.result (strings)
+- RedemptionRollbackObjectVoucherDiscount.channel.channel_type (strings)
+- RedemptionRollbackObjectLoyaltyCard.reward
+- RedemptionObjectDiscountVoucherExtended.result (strings)
+- RedemptionObjectDiscountVoucherExtended.channel.channel_type (strings)
+- RedemptionObjectLoyaltyCardExtended.reward
+- RedemptionsRedeemResult.promotion_tier
+- RedemptionsListParams.result (strings)
+- Redemption.result (strings)
+- RedemptionsListResponse.redemptions
+- RollbackRedemptionObjectExtended
+- RollbackRedemptionObjectDiscountVoucherExtended.result (strings)
+- RollbackRedemptionObjectDiscountVoucherExtended.channel.channel_type (strings)
+- RollbackRedemptionObjectLoyaltyCardExtended.reward
+- RedemptionsRollbackStackableResponse.rollbacks
+- RedemptionRollbackDiscountVoucherStacked.order
+- RedemptionRollbackDiscountVoucherStacked.result (strings)
+- RedemptionRollbackLoyaltyCardStacked.reward
+- RedemptionRollbackGiftCardStacked.voucher.gift.effect (strings)
+- RedemptionObjectLoyaltyCardDigital.parameters.campaign
+Rewards.ts
+- RewardObject.type (strings)
+- RewardObject.parameters
+- RewardObjectParametersCampaign.campaign
+- RewardsCreate
+- RewardsUpdate
+- RewardParametersCampaign.campaign
+- RewardParametersCoin.coin.exchange_ratio
+- RewardParametersCoin.coin.points_ratio
+Segments.ts
+- SegmentsCreate
+- SegmentsCreateAutoUpdate.filter.junction (strings)
+- SegmentsCreateResponse.filter.junction (strings)
+- SegmentsCreateResponse.type (strings)
+- SegmentsCreateResponse.initial_sync_status (strings)
+Stackable.ts
+- ExpandOption (strings)
+- StackableRedeemableObject (strings)
+- StackableRedeemableResponseStatus (strings)
+ValidationRules.ts
+- RuleExternal{}.conditions.$one_of_voucherify_conditions
+- ApplicableToObject.excluded.object (strings)
+- ApplicableToObject.included.object (strings)
+- ApplicableToObject.included.effect (strings)
+- ValidationRulesObjectType (strings)
+- ValidationRulesObjectContextType (strings)
+- ValidationRulesCreateAssignment
+- ValidationRulesCreateAssignmentObject.related_object_type (strings)
+- ValidationRulesListParams.order (strings)
+- ValidationRuleListAssignmentsParams.order (strings)
+Validations.ts
+- ValidationsValidateVoucherParams
+- ValidationsValidateVoucherResponse
+- ResponseValidateVoucherDiscountCode.discount
+- ValidationsValidateStackableParams.redeemables
+- RedeemablesDiscountReferralPromotionTierPromotionStack.object (strings)
+- ValidationValidateStackableResponse
+- ResponseValidationsTrue.redeemables
+- ResponseValidationsRedeemablesPromotionTier.result.discount
+- ValidationsTrueResultVoucherCode.discount
+- VoucherObjectDiscountAmount2.effect (strings)
+- VoucherObjectDiscountAmountDynamic2.effect (strings)
+- VoucherObjectDiscountPercentage2.effect (strings)
+- VoucherObjectDiscountPercentageDynamic2.effect (strings)
+- ValidateVoucherDiscountFixed.effect (strings)
+- ValidateVoucherDiscountUnit
+- ValidateVoucherDiscountUnitProduct.effect (strings)
+- ValidateVoucherDiscountUnitSku.effect (strings)
+- VoucherObjectDiscountUnitOne2.effect (strings)
+Vouchers.ts
+- VoucherType (strings)
+- SimpleVoucher.discount
+- VoucherObject.type (strings)
+- VoucherObject.gift.effect (strings)
+- VoucherObject.validity_day_of_week
+- VoucherDiscount
+- VoucherDiscountPost
+- VoucherDiscountPut
+- VoucherDiscountAmount.effect
+- VoucherDiscountPercentage.effect (strings)
+- VoucherDiscountFixed.effect (strings)
+- VoucherDiscountUnitOne.effect (strings)
+- VoucherDiscountUnitMultiple.units.effect (strings)
+- VouchersQualificationExamineBody.order.items
+- VouchersQualificationExamineParams.order (strings)
+- VouchersCreate.gift.effect (strings)
+- VouchersCreate.redemption.quantity
+- VouchersUpdate.gift.effect (strings)
+- VouchersUpdate.validity_day_of_week
+- VouchersListParams.order (strings)
+- VouchersImport
+- VouchersImportGiftDiscountObject.discount
+- ExportTransactionsResponse.status (strings)
+- ExportGiftCardTransactionsFields (strings)
+- TransactionsExportBody.order (strings)
+- ListTransactionsResponse.data
+- GiftCardTransactionObjectRedemption.source (strings)
+- GiftCardTransactionObjectRefund.source (strings)
+- GiftCardTransactionObjectAddition.source (strings)
+- GiftCardTransactionObjectRemoval.source (strings)

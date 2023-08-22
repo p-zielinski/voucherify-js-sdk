@@ -70,11 +70,11 @@ describe('Validations API', () => {
 		expect(response).toBeTruthy()
 		expect(response.redeemables).toBeInstanceOf(Array)
 		if (Array.isArray(response.redeemables)) {
-			response.redeemables?.forEach(redeemable => {
+			for (const redeemable of response.redeemables) {
 				if (redeemable.object === 'promotion_tier') {
 					//
 				}
-			})
+			}
 		}
 	})
 })

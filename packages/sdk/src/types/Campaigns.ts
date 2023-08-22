@@ -456,7 +456,6 @@ interface CreateCampaignReferral {
 	referral_program?: ReferralProgramCustomEventRedemption | ReferralProgramRedemption
 	use_voucher_metadata_schema?: boolean
 	vouchers_count?: number
-
 	name: string
 	campaign_type: 'REFERRAL_PROGRAM'
 	type: 'AUTO_UPDATE' | 'STATIC'

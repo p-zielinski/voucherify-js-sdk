@@ -952,35 +952,6 @@ export type ObjectLoyaltyCardTransaction =
 	| LoyaltyCardTransactionObjectExpiration
 	| LoyaltyCardTransactionObjectTransferOut
 	| LoyaltyCardTransactionObjectTransferIn
-//1_obj_loyalty_card_transaction_object
-
-//{
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_redemption"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_accrual"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_accrual_custom_event"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_refund"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_addition"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_removal"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_expiration"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_transfer_out"
-//           },
-//           {
-//             "$ref": "#/components/schemas/1_obj_loyalty_card_transaction_object_transfer_in"
-//           }
 
 export interface LoyaltyCardTransactionObjectRedemption {
 	id: string

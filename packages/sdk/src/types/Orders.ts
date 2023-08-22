@@ -597,8 +597,9 @@ export interface OrderObjectRollback {
 	customer_id?: string
 	referrer_id?: string
 	object: 'order'
-	redemptions?: {
-		redemption_ID?: {
+	redemptions?: Record<
+		string,
+		{
 			date?: string
 			rollback_id?: string
 			rollback_date?: string
@@ -606,5 +607,5 @@ export interface OrderObjectRollback {
 			related_object_id?: string
 			related_object_parent_id?: string
 		}
-	}
+	>
 }
