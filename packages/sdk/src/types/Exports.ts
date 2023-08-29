@@ -1,20 +1,11 @@
-export interface ExportResource {
-	exported_object:
-		| 'voucher'
-		| 'redemption'
-		| 'customer'
-		| 'publication'
-		| 'order'
-		| 'points_expiration'
-		| 'voucher_transactions'
-	parameters?: {
-		order?: string
-		fields?: string[]
-		filters?: {
-			junction?: 'AND' | 'OR'
-		} & Record<string, any>
-	}
-}
+export type ExportResource =
+	| ExportsCreateResponseVoucher
+	| ExportsCreateResponseRedemption
+	| ExportsCreateResponseCustomer
+	| ExportsCreateResponsePublication
+	| ExportsCreateResponseOrder
+	| ExportsCreateResponsePointsExpiration
+	| ExportsCreateVoucherTransactionsExpiration
 
 export interface ExportResourceResponseCommon {
 	id: string
