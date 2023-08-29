@@ -1,10 +1,10 @@
-export type ExportResource =
-	| ExportsCreateResponseVoucher
-	| ExportsCreateResponseRedemption
-	| ExportsCreateResponseCustomer
-	| ExportsCreateResponsePublication
-	| ExportsCreateResponseOrder
-	| ExportsCreateResponsePointsExpiration
+export type CreateExportResource =
+	| ExportsCreateVoucher
+	| ExportsCreateRedemption
+	| ExportsCreateCustomer
+	| ExportsCreatePublication
+	| ExportsCreateOrder
+	| ExportsCreatePointsExpiration
 	| ExportsCreateVoucherTransactionsExpiration
 
 export interface ExportResourceResponseCommon {
@@ -27,7 +27,7 @@ export type ExportResourceResponse = ExportResourceResponseCommon &
 		| ExportsCreateResponsePublication
 		| ExportsCreateResponseOrder
 		| ExportsCreateResponsePointsExpiration
-		| ExportsCreateVoucherTransactionsExpiration
+		| ExportsCreateResponseVoucherTransactionsExpiration
 	)
 
 export interface ExportsCreateResponseCommon {
@@ -48,91 +48,132 @@ export type ExportsCreateResponse = ExportsCreateResponseCommon &
 		| ExportsCreateResponsePublication
 		| ExportsCreateResponseOrder
 		| ExportsCreateResponsePointsExpiration
-		| ExportsCreateVoucherTransactionsExpiration
+		| ExportsCreateResponseVoucherTransactionsExpiration
 	)
+
+export interface ExportsCreateVoucher {
+	exported_object: 'voucher'
+	parameters?: ExportsCreateVoucherParameters
+}
 
 export interface ExportsCreateResponseVoucher {
 	exported_object: 'voucher'
-	parameters: {
-		fields?: ExportVoucherFields[]
-		filters?: {
-			junction?: Junction
-			conditions?: Record<ExportVoucherFields, Record<FiltersCondition, any>>
-			order?: ExportVoucherOrder
-		}
-	}
+	parameters: ExportsCreateVoucherParameters
 }
 
+export interface ExportsCreateVoucherParameters {
+	order?: ExportVoucherOrder
+	fields?: ExportVoucherFields[]
+	filters?: {
+		junction?: Junction
+	} & Record<ExportVoucherFields, { conditions?: Record<FiltersCondition, any> }>
+}
+
+export interface ExportsCreateRedemption {
+	exported_object: 'redemption'
+	parameters?: ExportsCreateRedemptionParameters
+}
 export interface ExportsCreateResponseRedemption {
 	exported_object: 'redemption'
-	parameters: {
-		fields?: ExportRedemptionFields[]
-		filters?: {
-			junction?: Junction
-			conditions?: Record<ExportRedemptionFields, Record<FiltersCondition, any>>
-			order?: ExportRedemptionOrder
-		}
-	}
+	parameters: ExportsCreateRedemptionParameters
+}
+
+export interface ExportsCreateRedemptionParameters {
+	order?: ExportRedemptionOrder
+	fields?: ExportRedemptionFields[]
+	filters?: {
+		junction?: Junction
+	} & Record<ExportRedemptionFields, { conditions?: Record<FiltersCondition, any> }>
+}
+
+export interface ExportsCreateCustomer {
+	exported_object: 'customer'
+	parameters?: ExportsCreateCustomerParameters
 }
 
 export interface ExportsCreateResponseCustomer {
 	exported_object: 'customer'
-	parameters: {
-		fields?: ExportCustomerFields[]
-		filters?: {
-			junction?: Junction
-			conditions?: Record<ExportCustomerFields, Record<FiltersCondition, any>>
-			order?: ExportCustomerOrder
-		}
-	}
+	parameters: ExportsCreateCustomerParameters
+}
+
+export interface ExportsCreateCustomerParameters {
+	order?: ExportCustomerOrder
+	fields?: ExportCustomerFields[]
+	filters?: {
+		junction?: Junction
+	} & Record<ExportCustomerFields, { conditions?: Record<FiltersCondition, any> }>
+}
+
+export interface ExportsCreatePublication {
+	exported_object: 'publication'
+	parameters?: ExportsCreatePublicationParameters
 }
 
 export interface ExportsCreateResponsePublication {
 	exported_object: 'publication'
-	parameters: {
-		fields?: ExportPublicationFields[]
-		filters?: {
-			junction?: Junction
-			conditions?: Record<ExportPublicationFields, Record<FiltersCondition, any>>
-			order?: ExportPublicationOrder
-		}
-	}
+	parameters: ExportsCreatePublicationParameters
+}
+
+export interface ExportsCreatePublicationParameters {
+	order?: ExportPublicationOrder
+	fields?: ExportPublicationFields[]
+	filters?: {
+		junction?: Junction
+	} & Record<ExportPublicationFields, { conditions?: Record<FiltersCondition, any> }>
+}
+
+export interface ExportsCreateOrder {
+	exported_object: 'order'
+	parameters?: ExportsCreateOrderParameters
 }
 
 export interface ExportsCreateResponseOrder {
 	exported_object: 'order'
-	parameters: {
-		fields?: ExportOrderFields[]
-		filters?: {
-			junction?: Junction
-			conditions?: Record<ExportOrderFields, Record<FiltersCondition, any>>
-			order?: ExportOrderOrder
-		}
-	}
+	parameters: ExportsCreateOrderParameters
+}
+
+export interface ExportsCreateOrderParameters {
+	order?: ExportOrderOrder
+	fields?: ExportOrderFields[]
+	filters?: {
+		junction?: Junction
+	} & Record<ExportOrderFields, { conditions?: Record<FiltersCondition, any> }>
+}
+
+export interface ExportsCreatePointsExpiration {
+	exported_object: 'points_expiration'
+	parameters?: ExportsCreatePointsExpirationParameters
 }
 
 export interface ExportsCreateResponsePointsExpiration {
 	exported_object: 'points_expiration'
-	parameters: {
-		fields?: ExportPointsExpirationFields[]
-		filters?: {
-			junction?: Junction
-			conditions?: Record<ExportPointsExpirationFields, Record<FiltersCondition, any>>
-			order?: ExportPointsExpirationOrder
-		}
-	}
+	parameters: ExportsCreatePointsExpirationParameters
+}
+
+export interface ExportsCreatePointsExpirationParameters {
+	order?: ExportPointsExpirationOrder
+	fields?: ExportPointsExpirationFields[]
+	filters?: {
+		junction?: Junction
+	} & Record<ExportPointsExpirationFields, { conditions?: Record<FiltersCondition, any> }>
 }
 
 export interface ExportsCreateVoucherTransactionsExpiration {
+	exported_object?: 'voucher_transactions'
+	parameters: ExportsCreateVoucherTransactionsExpirationParameters
+}
+
+export interface ExportsCreateResponseVoucherTransactionsExpiration {
 	exported_object: 'voucher_transactions'
-	parameters: {
-		fields?: ExportVoucherTransactionsFields[]
-		filters?: {
-			junction?: Junction
-			conditions?: Record<ExportVoucherTransactionsFields, Record<FiltersCondition, any>>
-			order?: ExportVoucherTransactionsOrder
-		}
-	}
+	parameters: ExportsCreateVoucherTransactionsExpirationParameters
+}
+
+export interface ExportsCreateVoucherTransactionsExpirationParameters {
+	order?: ExportVoucherTransactionsOrder
+	fields?: ExportVoucherTransactionsFields[]
+	filters?: {
+		junction?: Junction
+	} & Record<ExportVoucherTransactionsFields, { conditions?: Record<FiltersCondition, any> }>
 }
 
 export type ExportsGetResponse = ExportResourceResponse
