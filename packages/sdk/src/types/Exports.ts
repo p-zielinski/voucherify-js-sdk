@@ -173,8 +173,8 @@ export type ExportPointsExpirationFilters = {
 } & Partial<Record<ExportPointsExpirationFields, FieldConditions>>
 
 export interface ExportsCreateVoucherTransactionsExpiration {
-	exported_object?: 'voucher_transactions'
-	parameters: ExportsCreateVoucherTransactionsExpirationParameters
+	exported_object: 'voucher_transactions'
+	parameters?: ExportsCreateVoucherTransactionsExpirationParameters
 }
 
 export interface ExportsCreateResponseVoucherTransactionsExpiration {
