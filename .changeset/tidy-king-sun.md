@@ -62,17 +62,32 @@
   - request parameter
     - `ExportResource` was replaced with `CreateExportResource`
       - `CreateExportResource` is a union of types, to narrow down union type use `exported_object`, or while preparing a request, declare variable with a type, for example: `const request: ExportsCreateVoucher = {...}`
+  - response type
+    - `ExportsCreateResponse`, now is made out of `ExportsCreateResponseCommon` and union of types, such as `ExportsCreateResponseVoucher`, so if you need get into `parameters` you will need to first narrow down types by checking `exported_object` for example: `if(response.exported_object === 'voucher'){...some logic here}`
+- method voucherify.distributions.exports.create:
+  - response type
+    - `ExportsGetResponse` was replaced by `ExportResourceResponse`
+    - Now response is made out of `ExportResourceResponseCommon` and union of types, such as `ExportsCreateResponseVoucher`, so if you need get into `parameters` you will need to first narrow down types by checking `exported_object` for example: `if(response.exported_object === 'voucher'){...some logic here}`
 
 **Example of usage (related to breaking changes):**
 ```js
-const validation = await client.validations.validateVoucher('test')
-//First we must to narrow down response type by checking the valid value
-//As the response type may be either ResponseValidateVoucherTrue or ResponseValidateVoucherFalse
-if (response.valid) {
-  //ResponseValidateVoucherTrue
-  return { success: true, order: validation.order }
+const request: ExportsCreateVoucher = {
+  exported_object: 'voucher',
+  parameters: {
+    fields: ['id', 'code', 'voucher_type', 'value', 'discount_type'],
+    filters: { code: { conditions: { $is_unknown: true } } },
+  },
 }
-//ResponseValidateVoucherFalse
-return { success: false, reason: validation.reason || validation.error?.message || 'Unknown error' }
+const result = await client.distributions.exports.create(request)
+```
+
+```js
+const result = await client.distributions.exports.create(request)
+switch (result.exported_object) {
+  case 'voucher':
+    if(result.parameters.fields.includes('code')){
+      console.log(`will export voucher codes!`)
+    }
+}
 ```
 
