@@ -67,11 +67,11 @@ export interface ExportsCreateVoucherParameters {
 	filters?: ExportVoucherFilters
 }
 
-export type Conditions = { conditions?: Partial<Record<FiltersCondition, any>> }
+export type FieldConditions = { conditions?: Partial<Record<FiltersCondition, any>> }
 
 export type ExportVoucherFilters = {
 	junction?: Junction
-} & Partial<Record<ExportVoucherFields, Conditions>>
+} & Partial<Record<ExportVoucherFields, FieldConditions>>
 
 export interface ExportsCreateRedemption {
 	exported_object: 'redemption'
@@ -90,7 +90,7 @@ export interface ExportsCreateRedemptionParameters {
 
 export type ExportRedemptionFilters = {
 	junction?: Junction
-} & Partial<Record<ExportRedemptionFields, Conditions>>
+} & Partial<Record<ExportRedemptionFields, FieldConditions>>
 
 export interface ExportsCreateCustomer {
 	exported_object: 'customer'
@@ -110,7 +110,7 @@ export interface ExportsCreateCustomerParameters {
 
 export type ExportCustomerFilters = {
 	junction?: Junction
-} & Partial<Record<ExportCustomerFields, Conditions>>
+} & Partial<Record<ExportCustomerFields, FieldConditions>>
 
 export interface ExportsCreatePublication {
 	exported_object: 'publication'
@@ -130,7 +130,7 @@ export interface ExportsCreatePublicationParameters {
 
 export type ExportPublicationFilters = {
 	junction?: Junction
-} & Partial<Record<ExportPublicationFields, Conditions>>
+} & Partial<Record<ExportPublicationFields, FieldConditions>>
 
 export interface ExportsCreateOrder {
 	exported_object: 'order'
@@ -150,7 +150,7 @@ export interface ExportsCreateOrderParameters {
 
 export type ExportOrderFilters = {
 	junction?: Junction
-} & Partial<Record<ExportOrderFields, Conditions>>
+} & Partial<Record<ExportOrderFields, FieldConditions>>
 
 export interface ExportsCreatePointsExpiration {
 	exported_object: 'points_expiration'
@@ -170,7 +170,7 @@ export interface ExportsCreatePointsExpirationParameters {
 
 export type ExportPointsExpirationFilters = {
 	junction?: Junction
-} & Partial<Record<ExportPointsExpirationFields, Conditions>>
+} & Partial<Record<ExportPointsExpirationFields, FieldConditions>>
 
 export interface ExportsCreateVoucherTransactionsExpiration {
 	exported_object?: 'voucher_transactions'
@@ -190,7 +190,7 @@ export interface ExportsCreateVoucherTransactionsExpirationParameters {
 
 export type ExportVoucherTransactionsFilters = {
 	junction?: Junction
-} & Partial<Record<ExportVoucherTransactionsFields, Conditions>>
+} & Partial<Record<ExportVoucherTransactionsFields, FieldConditions>>
 
 export type ExportsGetResponse = ExportResourceResponse
 
