@@ -71,13 +71,13 @@
 
 **Example of usage (related to breaking changes):**
 ```js
-const request: ExportsCreateVoucher = {
+const request = {
   exported_object: 'voucher',
   parameters: {
     fields: ['id', 'code', 'voucher_type', 'value', 'discount_type'],
     filters: { code: { conditions: { $is_unknown: true } } },
   },
-}
+} as const
 const result = await client.distributions.exports.create(request)
 ```
 
