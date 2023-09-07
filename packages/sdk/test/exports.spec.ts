@@ -1,6 +1,5 @@
 import { voucherifyClient as client } from './client'
 import { expectTimeIsoString } from './utils/expectTimeIsoString'
-import { ExportsCreateVoucher } from '@voucherify/sdk'
 
 describe('Exports API', () => {
 	it('Should create export, with no parameters', async () => {
