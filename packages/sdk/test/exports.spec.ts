@@ -19,13 +19,13 @@ describe('Exports API', () => {
 	})
 
 	it('Should create export, with some parameters', async () => {
-		const request: ExportsCreateVoucher = {
+		const request = {
 			exported_object: 'voucher',
 			parameters: {
 				fields: ['id', 'code', 'voucher_type', 'value', 'discount_type'],
 				filters: { code: { conditions: { $is_unknown: true } } },
 			},
-		}
+		} as const
 		const result = await client.distributions.exports.create(request)
 		//we must narrow down result type, otherwise we will have hard time with 'parameters' type
 		expect(result.exported_object).toEqual(request.exported_object)

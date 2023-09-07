@@ -63,7 +63,7 @@ export interface ExportsCreateResponseVoucher {
 
 export interface ExportsCreateVoucherParameters {
 	order?: ExportVoucherOrder
-	fields?: ExportVoucherFields[]
+	fields?: readonly ExportVoucherFields[]
 	filters?: ExportVoucherFilters
 }
 
@@ -84,7 +84,7 @@ export interface ExportsCreateResponseRedemption {
 
 export interface ExportsCreateRedemptionParameters {
 	order?: ExportRedemptionOrder
-	fields?: ExportRedemptionFields[]
+	fields?: readonly ExportRedemptionFields[]
 	filters?: ExportRedemptionFilters
 }
 
@@ -104,7 +104,7 @@ export interface ExportsCreateResponseCustomer {
 
 export interface ExportsCreateCustomerParameters {
 	order?: ExportCustomerOrder
-	fields?: ExportCustomerFields[]
+	fields?: readonly ExportCustomerFields[]
 	filters?: ExportCustomerFilters
 }
 
@@ -124,7 +124,7 @@ export interface ExportsCreateResponsePublication {
 
 export interface ExportsCreatePublicationParameters {
 	order?: ExportPublicationOrder
-	fields?: ExportPublicationFields[]
+	fields?: readonly ExportPublicationFields[]
 	filters?: ExportPublicationFilters
 }
 
@@ -144,7 +144,7 @@ export interface ExportsCreateResponseOrder {
 
 export interface ExportsCreateOrderParameters {
 	order?: ExportOrderOrder
-	fields?: ExportOrderFields[]
+	fields?: readonly ExportOrderFields[]
 	filters?: ExportOrderFilters
 }
 
@@ -164,7 +164,7 @@ export interface ExportsCreateResponsePointsExpiration {
 
 export interface ExportsCreatePointsExpirationParameters {
 	order?: ExportPointsExpirationOrder
-	fields?: ExportPointsExpirationFields[]
+	fields?: readonly ExportPointsExpirationFields[]
 	filters?: ExportPointsExpirationFilters
 }
 
@@ -184,7 +184,7 @@ export interface ExportsCreateResponseVoucherTransactionsExpiration {
 
 export interface ExportsCreateVoucherTransactionsExpirationParameters {
 	order?: ExportVoucherTransactionsOrder
-	fields?: ExportVoucherTransactionsFields[]
+	fields?: readonly ExportVoucherTransactionsFields[]
 	filters?: ExportVoucherTransactionsFilters
 }
 
